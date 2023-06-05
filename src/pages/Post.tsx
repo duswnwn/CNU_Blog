@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import styled from '@emotion/styled';
 import { deletePostById, getPostById } from '../api';
 import NotFound from '../components/NotFound';
@@ -60,6 +60,7 @@ const Text = styled.p`
 `;
 
 const Post = () => {
+  const navigate = useNavigate();
   const params = useParams();
   const { postId } = params;
   const [post, setPost] = useState<IPost | undefined>(undefined);
@@ -86,7 +87,7 @@ const Post = () => {
     }
   };
   const requestDeletePostById = async () => {
-    await deletePostById(postId);
+    await deletePostById(postId ?? '');
     navigate('/');
   };
   return (

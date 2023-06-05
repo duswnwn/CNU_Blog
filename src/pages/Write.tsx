@@ -92,6 +92,7 @@ const Write = () => {
   const tagList = Object.keys(TAG);
   const { state } = useLocation();
   const isEdit = state?.postId;
+  // const navigate = useNavigate();
 
   const fetchPostById = async (postId: string) => {
     const { data } = await getPostById(postId);
@@ -106,9 +107,6 @@ const Write = () => {
     }
   }, []);
 
-  const requestCreatePost = async () => {
-    await createPost(title, content, tag);
-  };
   const requestUpdatePost = async () => {
     await updatePostById(state.postId, title, content, tag);
   };
@@ -124,7 +122,7 @@ const Write = () => {
 
   const navigate = useNavigate();
 
-  const requestCraetePost = async () => {
+  const requestCreatePost = async () => {
     await createPost(title, content, tag);
   };
 
